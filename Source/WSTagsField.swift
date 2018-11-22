@@ -178,6 +178,17 @@ open class WSTagsField: UIScrollView {
             repositionViews()
         }
     }
+    
+    open var imageForDelete: UIImage? = nil {
+        didSet {
+            tagViews.forEach { tagView in
+                guard imageForDelete != nil else {return}
+                let imageView = UIImageView(image: imageForDelete)
+                imageView.frame = CGRect(x: tagView.frame.width - 20, y: tagView.frame.origin.y, width: 20, height: tagView.frame.height)
+                self.layoutMargins = UIEdgeInsets(top: self.layoutMargins.top, left: self.layoutMargins.left, bottom: self.layoutMargins.bottom, right: self.layoutMargins.right + 20)
+            }
+        }
+    }
 
     open override var isFirstResponder: Bool {
         guard super.isFirstResponder == false, textField.isFirstResponder == false else {
