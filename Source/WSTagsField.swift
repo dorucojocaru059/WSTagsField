@@ -181,14 +181,7 @@ open class WSTagsField: UIScrollView {
     
     open var imageForDelete: UIImage? = nil {
         didSet {
-            tagViews.forEach { tagView in
-                guard imageForDelete != nil else {return}
-                let imageView = UIImageView(image: imageForDelete)
-                imageView.frame = CGRect(x: tagView.frame.width - 20, y: tagView.frame.origin.y, width: 20, height: tagView.frame.height)
-                imageView.contentMode = .center
-                self.layoutMargins = UIEdgeInsets(top: self.layoutMargins.top, left: self.layoutMargins.left, bottom: self.layoutMargins.bottom, right: 20)
-                addSubview(imageView)
-            }
+            
         }
     }
 
@@ -374,7 +367,17 @@ open class WSTagsField: UIScrollView {
         tagView.borderWidth = self.borderWidth
         tagView.borderColor = self.borderColor
         tagView.keyboardAppearanceType = self.keyboardAppearance
+        if imageForDelete != nil {
+            self.layoutMargins = UIEdgeInsets(top: self.layoutMargins.top, left: self.layoutMargins.left, bottom: self.layoutMargins.bottom, right: 20)
+        }
         tagView.layoutMargins = self.layoutMargins
+        if let image = imageForDelete {
+            let imageView = UIImageView(image: image)
+            imageView.frame = CGRect(x: tagView.frame.width - 20, y: tagView.frame.origin.y, width: 20, height: tagView.frame.height)
+            imageView.contentMode = .center
+            
+            addSubview(imageView)
+        }
 
         tagView.onDidRequestSelection = { [weak self] tagView in
             self?.selectTagView(tagView, animated: true)
