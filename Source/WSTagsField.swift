@@ -376,7 +376,7 @@ open class WSTagsField: UIScrollView {
             imageView.frame = CGRect(x: tagView.bounds.width - 20, y: tagView.bounds.origin.y, width: 20, height: tagView.bounds.height)
             imageView.contentMode = .center
             
-            addSubview(imageView)
+            tagView.addSubview(imageView)
         }
 
         tagView.onDidRequestSelection = { [weak self] tagView in
