@@ -373,7 +373,7 @@ open class WSTagsField: UIScrollView {
         tagView.layoutMargins = self.layoutMargins
         if let image = imageForDelete {
             let imageView = UIImageView(image: image)
-            imageView.frame = CGRect(x: tagView.frame.width - 20, y: tagView.frame.origin.y, width: 20, height: tagView.frame.height)
+            imageView.frame = CGRect(x: tagView.bounds.width - 20, y: tagView.bounds.origin.y, width: 20, height: tagView.bounds.height)
             imageView.contentMode = .center
             
             addSubview(imageView)
